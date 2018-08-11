@@ -150,6 +150,26 @@ body.sidemenuActive .container > .header {
   font-size: 17px;
 }
 
+.container > .mediaPlayer {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: calc(100vw - 120px);
+  margin: 0;
+  padding: 0;
+}
+
+.container > .mediaPlayer > #video {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 1;
+}
+
 .sidemenu {
   display: block;
   position: absolute;
