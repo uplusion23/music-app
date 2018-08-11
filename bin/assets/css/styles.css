@@ -32,8 +32,24 @@ body, html {
   transition: all 0.2s ease;
 }
 
-body.sidemenuActive .container {
-  left: 250px;
+.container > .shadow {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 997;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  pointer-events: none;
+  background: rgba(13,13,13,0.0);
+}
+
+body.sidemenuActive > .container > .shadow {
+  pointer-events: auto;
+  background: rgba(13,13,13,0.8);
 }
 
 .container > .header {
@@ -48,6 +64,12 @@ body.sidemenuActive .container {
 
   justify-content: space-between;
   flex-direction: row;
+  transition: all 0.2s ease;
+}
+
+body.sidemenuActive .container > .header {
+  width: calc(100% - 250px);
+  left: 250px;
 }
 
 .container > .header > .menuToggle {
@@ -80,6 +102,25 @@ body.sidemenuActive .container {
   padding: 0 0 0 20px;
 }
 
+.container > .header > .threeDot {
+  position: relative;
+  height: 60px;
+  width: 60px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 60px;
+  color: rgba(255,255,255,0.75);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 23px;
+}
+
+.container > .header > .threeDot:hover {
+  color: rgba(255,255,255,1);
+}
+
 .sidemenu {
   display: block;
   position: absolute;
@@ -96,4 +137,18 @@ body.sidemenuActive .container {
 
 body.sidemenuActive .sidemenu {
   left: 0;
+}
+
+.sidemenu > .header {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 0 0 20px;
+  margin: 0 0 10px 0;
+  color: #FFF;
+  box-sizing: border-box;
+  font-size: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
