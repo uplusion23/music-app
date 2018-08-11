@@ -7,7 +7,7 @@
     "title": "Music",
     "icon": "link.png",
     "toolbar": true,
-    "frame": false,
+    "frame": true,
     "width": 800,
     "height": 500,
     "position": "mouse",
