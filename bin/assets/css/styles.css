@@ -1,0 +1,13 @@
+root: {
+  --primary-dark: #152032;
+  --secondary-dark: #35475B;
+}
+
+body, html {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: var(--secondary-dark);
+  box-sizing: border-box;
+}
