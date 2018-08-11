@@ -1,3 +1,3 @@
 $('body').on('click', function() {
-  $('body').toggleClass("sidemenuActive")
+  $('body').toggleClass("sidemenuActive");
 });
