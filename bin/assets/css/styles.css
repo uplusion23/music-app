@@ -1,6 +1,9 @@
 :root {
-  --primary-dark: #152032;
-  --secondary-dark: #35475B;
+  --primary-dark: #222326;
+  --secondary-dark: #222326;
+  --grey: #373839;
+  --darkest: #121213;
+  --text: #FFF;
 }
 
 body, html {
@@ -26,7 +29,7 @@ body, html {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  padding: 120px 0 0 0;
+  padding: 60px 0 0 0;
   box-sizing: border-box;
 
   transition: all 0.2s ease;
@@ -119,6 +122,32 @@ body.sidemenuActive .container > .header {
 
 .container > .header > .threeDot:hover {
   color: rgba(255,255,255,1);
+}
+
+.container > .search {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin: 0;
+  padding: 10px 0;
+  background: var(--darkest);
+  box-sizing: border-box;
+}
+
+.container > .search > input[type=text] {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  height: 40px;
+  width: 60%;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  padding: 0 10px;
+  background: var(--grey);
+  color: var(--text);
+  font-size: 17px;
 }
 
 .sidemenu {
