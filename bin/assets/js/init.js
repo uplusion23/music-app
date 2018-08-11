@@ -1,11 +1,27 @@
-var your_menu = new nw.Menu({ type:'menubar'});
+var tracklist = document.querySelectorAll('.track');
 
-var submenu = new nw.Menu();
-submenu.append(new nw.MenuItem({label: 'Item A'}));
-submenu.append(new nw.MenuItem({label: 'Item B'}));
+document.addEventListener('keypress', function(key){
+  if(key.keyCode == 32){
+  }
+});
 
-your_menu.append(new nw.MenuItem({
-  label: 'First Menu',
-  submenu: submenu
-}));
-nw.Window.get().menu = your_menu;
+function playpause(){
+  tracklist[i].addEventListener('click', function(e){
+
+  });
+}
+
+for(i=0; i < trackList.length; i++){
+  playpause();
+}
+
+function findIndex(el){
+  var i=1;
+  while(el.previousSibling){
+    el = el.previousSibling;
+    if(el.nodeType === 1){
+      i++;
+    }
+  }
+  return i;
+}
