@@ -27,18 +27,46 @@ body, html {
   margin: 0;
   padding: 120px 0 0 0;
   box-sizing: border-box;
+
+  transition: all 0.2s ease;
 }
 
 body.sidemenuActive .container {
-  left: 100vw;
+  left: 250px;
 }
 
 .container > .header {
-  display: block;
-  position: fixed;
-  height: 120px;
+  display: flex;
+  position: absolute;
+  height: 60px;
   width: 100%;
-  background: var(--secondary-dark);
+  top: 0;
+  left: 0;
+  background: var(--primary-dark);
+  box-sizing: border-box;
+
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.container > .header > .menuToggle {
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 60px;
+  color: rgba(255,255,255,0.75);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 23px;
+}
+
+.container > .header > .menuToggle:hover {
+  color: rgba(255,255,255,1);
 }
 
 .sidemenu {
