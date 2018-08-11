@@ -13,6 +13,7 @@ body, html {
   width: 100%;
   height: 100%;
   user-select: none;
+  font-family: 'Open Sans', sans-serif;
 
   overflow: hidden;
 }
@@ -50,7 +51,6 @@ body.sidemenuActive .container {
 }
 
 .container > .header > .menuToggle {
-  display: block;
   position: relative;
   height: 60px;
   width: 60px;
@@ -67,6 +67,17 @@ body.sidemenuActive .container {
 
 .container > .header > .menuToggle:hover {
   color: rgba(255,255,255,1);
+}
+
+.container > .header > .title {
+  position: relative;
+  flex-grow: 1;
+  height: 60px;
+  box-sizing: border-box;
+  color: #FFF;
+  font-size: 18px;
+  line-height: 60px;
+  padding: 0 0 0 20px;
 }
 
 .sidemenu {
