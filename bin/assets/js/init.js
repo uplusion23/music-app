@@ -1,41 +1,163 @@
-$(document).ready(function(){
-$('#login').click(function(){
+var container = document.getElementById('inner'),
+template = document.createElement('div'),
+squares = [];
+var partLen = 16 * 16;
+var gama = 8;
+var angleX = 45, angleY = 0, angleZ = 0;
+template.className = 'bar';
+var shadow = 20;
+navigator.getUserMedia = navigator.getUserMedia       ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mazGetUserMedia;
 
-  var email = $("#email").val();
-  var password = $("#password").val();
+//if(confirm("this is done using CSS3 & is extensive on cpu.. do you wanna continue")){
+window.requestAnimFrame = (function(){
+  return window.requestAnimationFrame       ||
+         window.webkitRequestAnimationFrame ||
+         window.mozRequestAnimationFrame    ||
+         window.oRequestAnimationFrame      ||
+         window.msRequestAnimationFrame     ||
+         function(callback){
+           window.setTimeout(callback, 1000 / 60);
+         };
+})();
 
-  if(email=='' || password == '')
-  {
-    $('input[type="text"],input[type="password"]').css("boarder","2px solid red");
-    $('input[type="text"],input[type="password"]').css("box-shadow","0 0 3px red");
-    alert("Please fill all fields!");
+
+for(var i=0; i<16; i++){
+  squares[i] = [];
+  for(var j=0; j<16; j++){
+    squares[i].push(container.appendChild(template.cloneNode()));
   }
-  else{
-    $.post("login.php",{ email: email, password1: password},
-    function(data)
-    {
-      if(data=='Invalid Email')
-      {
-        $('input[type="text"]').css({"boarder":"2px solid red", "box-shadow":"0 0 3px red"});
-        $('input[type="password"]').css({"boarder":"2px solid #00F5FF", "box-shadow":"0 0 5px #00F5FF"});
-        alert(data);
-      }
-      else if(data=='Email or Password is wrong!')
-      {
-        $('input[type="text"]').css({"boarder":"2px solid red", "box-shadow":"0 0 3px red"});
-      }
-      else if(data=='sucessfully Logged in')
-      {
-        $('input[type="text"], input[type="password"]').css({"boarder":"2px solid #00F5FF","box-shadow":"0 0 5px #00F5FF"});
-        alert(data);
-      }
-      else
-      {
-        alert(data);
-      }
+}
+
+function Render(){
+  if(!processor){
+    requestAnimFrame(Render);
+    return;
+  }
+
+  processor.getByteFrequencyData(dataArray);
+  //console.log(dataArray);
+  angleZ += dataArray[16] * 0.00002;
+  angleY += dataArray[8] * 0.0000002;
+  angleX += dataArray[1] * 0.00000002;
+  var avgSpectrum = dataArray;
+
+  var current = [],
+      last = [],
+      currentEle, lastEle;
+
+  for (var i=0; i<15; i++){
+    current =  squares[i];
+    last = squares [i+1];
+    for(var j=0; j<16; j++){
+      currentEle = current[j];
+      lastEle = last[j].style;
+
+      currentEle.style.backgroundColor = lastEle.backgroundColor;
+      currentEle.style.boxShadow = lastEle.boxShadow;
+      currentEle.style.webkitTransform = lastEle.webkitTransform;
+    }
+  }
+
+  current = squares[15];
+
+  var r, g, b, sample_bef, sample, color;
+
+  for(var i=0; i<16; i++){
+    currentEle = current[i];
+    sample = avgSpectrum[i];
+    sample_bef = avgSpectrum[i-1]?((avgSpectrum[i-1])):0;
+    sample = (sample + sample_bef/2)/5;
+
+    if(sample<50){
+      r = sample *gamma;
+    }
+    else{
+      r = (100 - sample) * gamma;
+    }
+
+    if(sample >= 30 && sample < 80){
+      g = (sample - 30) * gamma;
+    }
+    else if(sample<30){
+      g = (sample - 30) * gamma;
+    }
+    else{
+      g = (130 - sample) * gamma;
+    }
+
+    if(sample >= 50){
+      b = (sample - 50) * gamma;
+    else(sample >= 50){
+      b = (50 - sample) * gamma;
+    }
+
+    r = ~~r;
+    g= ~~g;
+    b= ~~b;
+
+    color = 'rgb('+r+','+g+','+b+')';
+    currentEle.style.backgroundColor = color;
+    currentEle.style.boxShadow = '0px 0px '+ (r+g+b)%shadow +'px '+color;
+    currentEle.style.webkitTransform = 'translateZ('+sample+'px)';
+  }
+  container.style.webkitTrnsform = 'rotateX('+angleX+'rad) rotateY('+angleY+'rad) rotateZ('+angleZ+'rad)';
+    requestAnimFrame(Render);
+}
+
+requestAnimFrame(Render);
+
+
+var context = new AudioContext(),
+    currentvalue = new Array();
+    processor = null,
+    dataArray = null;
+
+
+window.addEventLisener('load', function(){
+  audio = new Audio();
+  var params = { audio: true, video: false};
+  if(navigator.getUserMedia) {
+    navigator.getUserMedia( params, requestMicrophoneSuccess, requestMicrophoneError);
+  }
+
+  function requestMicrophoneError(){
+    document.getElementByTagName('h1')[0] = 'Your browser is unworthy is Assimilation';
+  }
+
+  function requestMicrophoneSuccess(stream){
+    audio.src = window.URL.createObjectURL(stream);
+    audio.addEventLisener('canplaythrough', function(){
+      console.log('And we gonna play now');
+      var node = context.createMediaStreamSource(stream);
+      processor = context.createAnalyser();
+      processor.fftSize = 128;
+      var size = processor.frequencyBinCount;
+      dataArray = new Uint8Array(size);
+
+      node.connect(processor);
+      processor.connect(context.destination);
     });
   }
 
-}
-});
+  audio.autoplay = true;
+  audio.muted = true;
+
+  var highPerf = document.createElement('input');
+  highPerf.type = 'chaeckbox';
+  highPerf.checked = true;
+  var p = document.createElement('p');
+  p.textContent = 'High Video Mode :' ;
+  appendChild(highPerf);
+  highPerf.addEventLisener('change', function(e){
+    if(this.checked){
+      shadow = 20;
+    }
+    else{
+      shadow = 1;
+    }
+  });
+  controls.appendChild(audio);
+  controls.appendChild(p);
 });
