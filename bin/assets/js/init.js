@@ -1,7 +1,7 @@
 var container = document.getElementById('inner'),
 template = document.createElement('div'),
 squares = [];
-var partLen = 16 * 16;
+var partLen = 32 * 32;
 var gama = 8;
 var angleX = 45, angleY = 0, angleZ = 0;
 template.className = 'bar';
@@ -23,9 +23,9 @@ window.requestAnimFrame = (function(){
 })();
 
 
-for(var i=0; i<16; i++){
+for(var i=0; i<32; i++){
   squares[i] = [];
-  for(var j=0; j<16; j++){
+  for(var j=0; j<32; j++){
     squares[i].push(container.appendChild(template.cloneNode()));
   }
 }
@@ -38,19 +38,19 @@ function Render(){
 
   processor.getByteFrequencyData(dataArray);
   //console.log(dataArray);
-  angleZ += dataArray[16] * 0.00002;
-  angleY += dataArray[8] * 0.0000002;
-  angleX += dataArray[1] * 0.00000002;
+  angleZ += dataArray[32] * 0.00002;
+  angleY += dataArray[16] * 0.0000002;
+  angleX += dataArray[8] * 0.00000002;
   var avgSpectrum = dataArray;
 
   var current = [],
       last = [],
       currentEle, lastEle;
 
-  for (var i=0; i<15; i++){
+  for (var i=0; i<31; i++){
     current =  squares[i];
     last = squares [i+1];
-    for(var j=0; j<16; j++){
+    for(var j=0; j<32; j++){
       currentEle = current[j];
       lastEle = last[j].style;
 
@@ -60,11 +60,11 @@ function Render(){
     }
   }
 
-  current = squares[15];
+  current = squares[31];
 
   var r, g, b, sample_bef, sample, color;
 
-  for(var i=0; i<16; i++){
+  for(var i=0; i<32; i++){
     currentEle = current[i];
     sample = avgSpectrum[i];
     sample_bef = avgSpectrum[i-1]?((avgSpectrum[i-1])):0;
@@ -89,7 +89,8 @@ function Render(){
 
     if(sample >= 50){
       b = (sample - 50) * gamma;
-    else(sample >= 50){
+    }
+    else{
       b = (50 - sample) * gamma;
     }
 
@@ -102,7 +103,7 @@ function Render(){
     currentEle.style.boxShadow = '0px 0px '+ (r+g+b)%shadow +'px '+color;
     currentEle.style.webkitTransform = 'translateZ('+sample+'px)';
   }
-  container.style.webkitTrnsform = 'rotateX('+angleX+'rad) rotateY('+angleY+'rad) rotateZ('+angleZ+'rad)';
+  container.style.webkitTransform = 'rotateX('+angleX+'rad) rotateY('+angleY+'rad) rotateZ('+angleZ+'rad)';
     requestAnimFrame(Render);
 }
 
