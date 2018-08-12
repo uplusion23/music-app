@@ -8,8 +8,8 @@
     "icon": "link.png",
     "toolbar": true,
     "frame": true,
-    "width": 800,
-    "height": 500,
+    "width": 1366,
+    "height": 768,
     "position": "center",
     "min_width": 700,
     "min_height": 500
