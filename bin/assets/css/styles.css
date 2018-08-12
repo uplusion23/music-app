@@ -31,8 +31,6 @@ body, html {
   margin: 0;
   padding: 60px 0 0 0;
   box-sizing: border-box;
-
-  transition: all 0.2s ease;
 }
 
 .container > .shadow {
