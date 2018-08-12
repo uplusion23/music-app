@@ -28,14 +28,34 @@
       <div class="search">
         <input type="text" placeholder="Search..."/>
       </div>
+
       <div class="mediaPlayer">
-        <video autoplay loop id="video" muted loop autoplay>
+        <div class="videoCard">
+          <div id="player"></div>
+        </div>
+        <video autoplay loop id="bgvideo" muted loop autoplay>
           <source src="assets/media/dvde_background.webm" type="video/webm">
         </video>
       </div>
+
+      <div class="controls">
+        <div class="metainfo">
+          <div class="albumart"></div>
+          <div class="songinfo">
+            <span data-info="title"></span>
+            <span data-info="album"></span>
+          </div>
+        </div>
+        <div class="center-controls">
+          <a data-action="playpause" class="control-button" href="#">PLAY/PAUSE</a>
+        </div>
+        <div class="right-controls"></div>
+			</div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/init.js"></script>
+    <script src="assets/js/bridge.js"></script>
     <script src="assets/js/display.js"></script>
+    <script src="assets/js/youtube.js"></script> <!-- later loaded by init module -->
   </body>
 </html>

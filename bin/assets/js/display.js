@@ -11,5 +11,9 @@ $('body').on('click', '.shadow', function() {
 });
 
 $(document).ready(function() {
-  $('.sidemenu > .header').text(disGlobals.username)
+  $('.sidemenu > .header').text(disGlobals.username);
+});
+
+$('body').on('click', '[data-action="playpause"]', function() {
+  bridge.mediaControls.togglePlay();
 });
