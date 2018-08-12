@@ -14,7 +14,7 @@ var bridge = {
     getVideoInfo: function(id, callback) {
       $.ajax({
         type: 'GET',
-        url: "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=" + id + "&key=AIzaSyCKd--Y4CLdXIIs575jNGO0RfBPkvGuHDo",
+        url: "https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet&id=" + id + "&key=" + key,
         contentType: 'application/json',
         dataType: 'jsonp',
         responseType:'application/json',
