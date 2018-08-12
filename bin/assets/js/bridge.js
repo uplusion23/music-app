@@ -41,6 +41,12 @@ var bridge = {
         $('[data-info="albumart"]').each(function() {
           $(this).css("background-image", "url(" + data.items[0].snippet.thumbnails.medium.url + ")");
         });
+        $('.videoCard > .thumbnail').each(function() {
+          $(this).css("background-image", "url(" + data.items[0].snippet.thumbnails.maxres.url + ")");
+        });
+        $('.videoCard > .thumbnail_blur').each(function() {
+          $(this).css("background-image", "url(" + data.items[0].snippet.thumbnails.maxres.url + ")");
+        });
         $('[data-info="title"]').each(function() {
           $(this).text(data.items[0].snippet.title)
         });
