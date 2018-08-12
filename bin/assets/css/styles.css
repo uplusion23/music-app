@@ -4,7 +4,7 @@
   --grey: #373839;
   --darkest: #121213;
   --text: #FFF;
-  --text: #605F5F;
+  --text-faded: #605F5F;
 }
 
 body, html {
@@ -222,12 +222,53 @@ body.sidemenuActive .container > .header {
   flex-direction: row;
 }
 
-.container > .controls > .metainfo {
+.container > .controls a.control-button {
+  display: block;
+  position: relative;
+  color: var(--text);
+  text-decoration: none;
+  text-align: center;
+  font-size: 24px;
+  height: 55px;
+  width: 55px;
+  line-height: 55px;
+  border-radius: 50%;
+  margin: 10px 7px;
+  padding: 0;
+}
+
+.container > .controls a.control-button.background {
+  background: #F44336;
+}
+
+.container > .controls > .right-controls, .container > .controls > .metainfo {
   position: relative;
   height: 75px;
   width: auto;
   margin: 0;
   padding: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 30%;
+}
+
+.container > .controls > .right-controls > a {
+  float: right;
+  margin-left: 15px;
+}
+
+.container > .controls > .center-controls {
+  display: flex;
+  position: relative;
+  height: 75px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  flex-shrink: 0;
+  text-align: center;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .container > .controls > .metainfo > .albumart {
@@ -262,20 +303,13 @@ body.sidemenuActive .container > .header {
   color: var(--text-faded);
 }
 
-.container > .controls > .right-controls {
-  position: relative;
-  height: 75px;
-  width: auto;
-  margin: 0;
-  padding: 0;
-}
-
-.container > .controls > .center-controls {
-  position: relative;
-  height: 75px;
-  width: auto;
-  margin: 0;
-  padding: 0;
+.container > .controls > .metainfo > .songinfo span[data-info="title"] {
+  display: block;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  font-size: 15px;
+  color: var(--text);
 }
 
 .sidemenu {

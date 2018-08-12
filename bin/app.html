@@ -40,16 +40,22 @@
 
       <div class="controls">
         <div class="metainfo">
-          <div class="albumart"></div>
+          <div class="albumart" data-info="albumart"></div>
           <div class="songinfo">
             <span data-info="title"></span>
-            <span data-info="album"></span>
+            <span data-info="author"></span>
           </div>
         </div>
         <div class="center-controls">
-          <a data-action="playpause" class="control-button" href="#">PLAY/PAUSE</a>
+          <a data-action="" class="control-button" href="#"><i class="icon ion-md-repeat"></i></a>
+          <a data-action="" class="control-button" href="#"><i class="icon ion-md-skip-backward"></i></a>
+          <a data-action="playpause" class="control-button background" href="#"><i class="icon ion-md-play"></i></a>
+          <a data-action="" class="control-button" href="#"><i class="icon ion-md-skip-forward"></i></a>
+          <a data-action="" class="control-button" href="#"><i class="icon ion-md-shuffle"></i></a>
         </div>
-        <div class="right-controls"></div>
+        <div class="right-controls">
+            <a data-action="vol" class="control-button" href="#"><i class="icon ion-md-volume-high"></i></a>
+        </div>
 			</div>
     </div>
     <script src="assets/js/jquery.min.js"></script>

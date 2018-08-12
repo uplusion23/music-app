@@ -16,4 +16,11 @@ $(document).ready(function() {
 
 $('body').on('click', '[data-action="playpause"]', function() {
   bridge.mediaControls.togglePlay();
+  if (bridge.mediaControls.playing) {
+    $(this).children('i').removeClass('ion-md-play');
+    $(this).children('i').addClass('ion-md-pause');
+  } else {
+    $(this).children('i').removeClass('ion-md-pause');
+    $(this).children('i').addClass('ion-md-play');
+  }
 });

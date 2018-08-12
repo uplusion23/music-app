@@ -10,10 +10,10 @@ function onYouTubeIframeAPIReady() {
   bridge.player = new YT.Player('player', {
     height: '450',
     width: '800',
-    videoId: 'NP1u3Q5zswg'
-  //  events: {
-    //  'onReady': onPlayerReady,
+    videoId: 'NP1u3Q5zswg',
+    events: {
+    //  'onReady': bridge.mediaControls.playerReady()
     //  'onStateChange': onPlayerStateChange
-    //}
+    }
   });
 }
