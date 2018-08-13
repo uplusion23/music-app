@@ -37,7 +37,7 @@ var bridge = {
     },
     updateInfo: function(id) {
       bridge.mediaControls.getVideoInfo(id, function(data) {
-        console.log(data)
+        console.log(data);
         $('[data-info="albumart"]').each(function() {
           $(this).css("background-image", "url(" + data.items[0].snippet.thumbnails.medium.url + ")");
         });
@@ -54,6 +54,21 @@ var bridge = {
           $(this).text(data.items[0].snippet.channelTitle)
         });
       });
+    },
+    updateSeek: function(event) {
+      var seekUpdate;
+      if (event.data == YT.PlayerState.PLAYING) {
+        var totalTime = bridge.player.getDuration();
+        seekUpdate = setInterval(function() {
+          var currentTime = bridge.player.getCurrentTime();
+          var percentage = (currentTime / totalTime) * 100;
+          $('.controls > .seekBar > .progress').attr('style', 'width: ' + percentage + '%');
+        }, 900);
+      } else {
+        if (seekUpdate != undefined) {
+          clearTimeout(seekUpdate);
+        }
+      }
     }
   },
   player: null

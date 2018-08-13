@@ -13,7 +13,7 @@ function onYouTubeIframeAPIReady() {
     videoId: 'NP1u3Q5zswg',
     events: {
     //  'onReady': bridge.mediaControls.playerReady()
-    //  'onStateChange': onPlayerStateChange
+      'onStateChange': bridge.mediaControls.updateSeek
     }
   });
 }
