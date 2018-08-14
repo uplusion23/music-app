@@ -30,3 +30,7 @@ $('body').on('click', '.controls > .seekBar', function(event) {
   bridge.mediaControls.setSeek(percentage);
   //console.log("Video Value should be set to: " + bridge.utils.reversePercentage(percentage, bridge.player.getDuration()))
 });
+
+$('body').on('mousemove', '.volume input[type="range"]', function() {
+  bridge.mediaControls.setVolume($(this).val());
+});

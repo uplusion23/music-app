@@ -280,8 +280,8 @@ body.sidemenuActive .container > .header {
   height: 10px;
 }
 
-.container > .controls a.control-button {
-  display: block;
+.container > .controls span.control-button {
+  display: inline-block;
   position: relative;
   color: var(--text);
   text-decoration: none;
@@ -295,8 +295,58 @@ body.sidemenuActive .container > .header {
   padding: 0;
 }
 
-.container > .controls a.control-button.background {
+.container > .controls span.control-button.background {
   background: var(--red);
+}
+
+.container > .controls span.control-button[data-action="vol"] .volume {
+  display: block;
+  position: absolute;
+  top: -140px;
+  left: 0;
+  width: 55px;
+  height: 150px;
+  background: var(--darkest);
+  opacity: 0;
+  margin: 0;
+  padding: 10px 0;
+  box-sizing: border-box;
+
+  transition: all 0.3s ease;
+}
+
+.container > .controls span.control-button[data-action="vol"]:hover .volume {
+  top: -150px;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.container > .controls span.control-button[data-action="vol"] .volume input[type="range"] {
+  position: absolute;
+  top: 140px;
+  left: 20px;
+	-webkit-appearance: none;
+	width: 130px;
+	height: 13px;
+	background: var(--grey);
+	background-position: center;
+	background-repeat: no-repeat;
+  box-sizing: border-box;
+	overflow: hidden;
+	outline: none;
+  pointer-events: auto;
+
+  transform: rotate(270deg);
+  transform-origin: 0% 0%;
+}
+
+.container > .controls span.control-button[data-action="vol"] .volume input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 13px;
+	height: 13px;
+	background: var(--text-faded);
+	position: relative;
+	cursor: pointer;
 }
 
 .container > .controls > .right-controls, .container > .controls > .metainfo {
@@ -310,7 +360,7 @@ body.sidemenuActive .container > .header {
   width: 30%;
 }
 
-.container > .controls > .right-controls > a {
+.container > .controls > .right-controls > span {
   float: right;
   margin-left: 15px;
 }

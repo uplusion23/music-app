@@ -70,12 +70,23 @@ var bridge = {
         var currentTime = bridge.player.getCurrentTime();
         var percentage = bridge.utils.getPercentage(currentTime, totalTime);
         $('.controls > .seekBar > .progress').attr('style', 'width: ' + percentage + '%');
+
+        if (bridge.mediaControls.playing === true) {
+          $('[data-action="playpause"]').children('i').removeClass('ion-md-play');
+          $('[data-action="playpause"]').children('i').addClass('ion-md-pause');
+        } else {
+          $('[data-action="playpause"]').children('i').removeClass('ion-md-pause');
+          $('[data-action="playpause"]').children('i').addClass('ion-md-play');
+        }
       }, 900);
     },
     setSeek: function(percent) {
       $('.controls > .seekBar > .progress').attr('style', 'width: ' + percent + '%');
       var num = bridge.utils.reversePercentage(percent, bridge.player.getDuration());
-      bridge.player.seekTo(num)
+      bridge.player.seekTo(num);
+    },
+    setVolume: function(val) {
+      bridge.player.setVolume(val);
     }
   },
   player: null

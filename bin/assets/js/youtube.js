@@ -22,9 +22,11 @@ function onYouTubeIframeAPIReady() {
       'onStateChange': function(event) {
         //console.log(event);
         if (event.data == YT.PlayerState.PLAYING) {
-          bridge.mediaControls.updateSeek()
+          bridge.mediaControls.updateSeek();
+          bridge.mediaControls.updateInfo();
+          bridge.mediaControls.playing = true;
         } else {
-          clearInterval(bridge.mediaControls._updateSeek)
+          clearInterval(bridge.mediaControls._updateSeek);
         }
       }
     }
