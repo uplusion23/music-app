@@ -10,7 +10,7 @@ function onYouTubeIframeAPIReady() {
   bridge.player = new YT.Player('player', {
     height: '450',
     width: '800',
-    videoId: 'NP1u3Q5zswg',
+    videoId: 'gJTQryWbzM8',
     playerVars: {
       'controls' : 0,
       'modestbranding' : 1,
