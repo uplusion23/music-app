@@ -24,3 +24,9 @@ $('body').on('click', '[data-action="playpause"]', function() {
     $(this).children('i').addClass('ion-md-play');
   }
 });
+
+$('body').on('click', '.controls > .seekBar', function(event) {
+  var percentage = (event.clientX-this.offsetLeft) / this.offsetWidth * 100;
+  bridge.mediaControls.setSeek(percentage);
+  //console.log("Video Value should be set to: " + bridge.utils.reversePercentage(percentage, bridge.player.getDuration()))
+});

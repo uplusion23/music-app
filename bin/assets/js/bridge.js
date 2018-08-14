@@ -1,4 +1,12 @@
 var bridge = {
+  utils: {
+    getPercentage: function(num1, num2) {
+      return (num1 / num2) * 100;
+    },
+    reversePercentage: function(percent, total) {
+      return (percent / 100) * total;
+    }
+  },
   mediaControls: {
     playing: false,
     togglePlay: function() {
@@ -55,20 +63,19 @@ var bridge = {
         });
       });
     },
-    updateSeek: function(event) {
-      var seekUpdate;
-      if (event.data == YT.PlayerState.PLAYING) {
+    _updateSeek: null,
+    updateSeek: function() {
+      bridge.mediaControls._updateSeek = setInterval(function() {
         var totalTime = bridge.player.getDuration();
-        seekUpdate = setInterval(function() {
-          var currentTime = bridge.player.getCurrentTime();
-          var percentage = (currentTime / totalTime) * 100;
-          $('.controls > .seekBar > .progress').attr('style', 'width: ' + percentage + '%');
-        }, 900);
-      } else {
-        if (seekUpdate != undefined) {
-          clearTimeout(seekUpdate);
-        }
-      }
+        var currentTime = bridge.player.getCurrentTime();
+        var percentage = bridge.utils.getPercentage(currentTime, totalTime);
+        $('.controls > .seekBar > .progress').attr('style', 'width: ' + percentage + '%');
+      }, 900);
+    },
+    setSeek: function(percent) {
+      $('.controls > .seekBar > .progress').attr('style', 'width: ' + percent + '%');
+      var num = bridge.utils.reversePercentage(percent, bridge.player.getDuration());
+      bridge.player.seekTo(num)
     }
   },
   player: null

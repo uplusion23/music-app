@@ -256,6 +256,7 @@ body.sidemenuActive .container > .header {
   width: 100%;
   height: 5px;
   background: var(--grey);
+  transition: all 0.1s ease;
 }
 
 .container > .controls > .seekBar > .progress {
@@ -266,6 +267,17 @@ body.sidemenuActive .container > .header {
   width: 0%;
   height: 5px;
   background: var(--red);
+  transition: all 0.3s ease;
+}
+
+.container > .controls > .seekBar:hover {
+  cursor: pointer;
+  top: -10px;
+  height: 10px;
+}
+
+.container > .controls > .seekBar:hover > .progress {
+  height: 10px;
 }
 
 .container > .controls a.control-button {
