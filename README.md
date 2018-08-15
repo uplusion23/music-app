@@ -7,3 +7,4 @@
 ![alt text](https://i.imgur.com/zGVBxUg.png "Screenshot 8/14/2018")
 #### Issues
 * Volume slider does not drag, must click/scroll
+* Delay for pause/play button when selecting a timestamp on the seek bar.
