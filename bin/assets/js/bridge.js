@@ -91,4 +91,4 @@ var bridge = {
   },
   player: null
 }
-bridge.mediaControls.updateInfo('NP1u3Q5zswg');
+bridge.mediaControls.updateInfo('gJTQryWbzM8');

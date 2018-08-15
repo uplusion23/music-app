@@ -31,6 +31,23 @@ $('body').on('click', '.controls > .seekBar', function(event) {
   //console.log("Video Value should be set to: " + bridge.utils.reversePercentage(percentage, bridge.player.getDuration()))
 });
 
-$('body').on('mousemove', '.volume input[type="range"]', function() {
+$('body').on('mousemove change', '.volume input[type="range"]', function() {
   bridge.mediaControls.setVolume($(this).val());
+});
+
+$('.volume').on('wheel', function(event) {
+  event.preventDefault();
+  var $slider = $('.volume input[type="range"]');
+  var current = parseInt($slider.val());
+  if (event.originalEvent.deltaY < 0) {
+    if (current < 100) {
+      $slider.val(current + 5);
+    }
+  } else {
+    if (current > 0) {
+      $slider.val(current - 5);
+    }
+  }
+
+  $slider.trigger('change');
 });
