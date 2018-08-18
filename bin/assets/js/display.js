@@ -51,3 +51,11 @@ $('.volume').on('wheel', function(event) {
 
   $slider.trigger('change');
 });
+
+$('body').on('keydown', '.search > input', function(e) {
+  if (e.keyCode == 13) { // Enter pressed
+    bridge.youtube.search(encodeURI($(this).val()), 25, 'fff', function(data) {
+      bridge.ui.addResult(data);
+    });
+  }
+});

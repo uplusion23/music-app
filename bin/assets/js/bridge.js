@@ -108,25 +108,3 @@ var bridge = {
   player: null
 }
 bridge.mediaControls.updateInfo('gJTQryWbzM8');
-
-$.ajax({
-  type: 'GET',
-  url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=Hippie+Sabotage&key=" + key + "&maxResults=25",
-  contentType: 'application/json',
-  dataType: 'jsonp',
-  responseType:'application/json',
-  xhrFields: {
-    withCredentials: false
-  },
-  headers: {
-    'Access-Control-Allow-Credentials' : true,
-    'Access-Control-Allow-Origin':'*',
-    'Access-Control-Allow-Methods':'GET',
-    'Access-Control-Allow-Headers':'application/json',
-  },
-  success: function(data) {
-    bridge.ui.addResult(data);
-  },
-  error: function(error) {
-  }
-});

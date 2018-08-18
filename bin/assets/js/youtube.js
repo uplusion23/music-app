@@ -34,6 +34,36 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
+bridge.youtube = {};
+bridge.youtube.search = function(query, count, sort, callback) {
+  count = 25;
+  sort = 'fff';
+  // Add these later on
+
+  $.ajax({
+    type: 'GET',
+    url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&key=" + key + "&maxResults=" + count,
+    contentType: 'application/json',
+    dataType: 'jsonp',
+    responseType:'application/json',
+    xhrFields: {
+      withCredentials: false
+    },
+    headers: {
+      'Access-Control-Allow-Credentials' : true,
+      'Access-Control-Allow-Origin':'*',
+      'Access-Control-Allow-Methods':'GET',
+      'Access-Control-Allow-Headers':'application/json',
+    },
+    success: function(data) {
+      //bridge.ui.addResult(data);
+      callback(data);
+    },
+    error: function(error) {
+    }
+  });
+}
+
 bridge.playlist = [
   'gJTQryWbzM8',
   'J_yvaxEE5cQ'
