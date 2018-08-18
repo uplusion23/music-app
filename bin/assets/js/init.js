@@ -1,4 +1,4 @@
-var container = document.getElementById('inner'),
+/* var container = document.getElementById('inner'),
 template = document.createElement('div'),
 squares = [];
 var partLen = 32 * 32;
@@ -162,3 +162,4 @@ window.addEventLisener('load', function(){
   controls.appendChild(audio);
   controls.appendChild(p);
 });
+*/
