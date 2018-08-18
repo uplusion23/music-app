@@ -152,8 +152,8 @@ body.sidemenuActive .container > .header {
   font-size: 17px;
 }
 
-.container > .mediaPlayer {
-  display: block;
+.container > .searchResults {
+  display: none;
   position: relative;
   width: 100%;
   height: calc(100vw - 120px);
@@ -162,7 +162,88 @@ body.sidemenuActive .container > .header {
   box-sizing: border-box;
 }
 
-.container > .mediaPlayer > #bgvideo {
+.container > .searchResults.active {
+  display: block;
+}
+
+.container > .searchResults > .card {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 2;
+  height: auto;
+  max-height: 65vh;
+  width: 80%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background: var(--primary-dark);
+  box-sizing: border-box;
+}
+
+.container > .searchResults > .card > div[class^="result_"] {
+  display: block;
+  position: relative;
+  margin: 0 0 5px 0;
+  padding: 5px;
+  width: 100%;
+  height: 95px;
+  cursor: pointer;
+}
+
+.container > .searchResults > .card > div[class^="result_"] > .thumbnail {
+  display: block;
+  position: relative;
+  float: left;
+  height: 95px;
+  width: 95px;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../media/defaultAlbum.png);
+}
+
+.container > .searchResults > .card > div[class^="result_"] > .info {
+  display: block;
+  position: relative;
+  height: 95px;
+  width: calc(100% - 95px);
+  box-sizing: border-box;
+  float: left;
+}
+
+.container > .searchResults > .card > div[class^="result_"] > .info > span {
+  display: block;
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  color: var(--text);
+  margin: 0 0 10px 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.container > .searchResults > .card > div[class^="result_"] > .info > span.description {
+  color: var(--text-faded);
+  font-size: 14px;
+}
+
+.container > .mediaPlayer {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: calc(100vw - 120px);
+  margin: 0;
+  padding: 20px 0 0 0;
+  box-sizing: border-box;
+}
+
+.container > .mediaPlayer.active {
+  display: block;
+}
+
+.container > #bgvideo {
   position: absolute;
   bottom: 0;
   left: 0;

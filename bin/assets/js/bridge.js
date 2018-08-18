@@ -89,6 +89,44 @@ var bridge = {
       bridge.player.setVolume(val);
     }
   },
+  ui: {
+    addResult: function(data) {
+      for (var i = 0; i < data.items.length; i++) {
+        var item = data.items[i];
+        $('.searchResults > .card').append('\
+        <div class="result_youtube">\
+          <div class="thumbnail" style="background-image: url(' + item.snippet.thumbnails.medium.url + ')"></div>\
+          <div class="info">\
+            <span>' + item.snippet.title + '</span>\
+            <span class="description">' + item.snippet.description + '</span>\
+          </div>\
+        </div>\
+        ');
+      }
+    }
+  },
   player: null
 }
 bridge.mediaControls.updateInfo('gJTQryWbzM8');
+
+$.ajax({
+  type: 'GET',
+  url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=Hippie+Sabotage&key=" + key + "&maxResults=25",
+  contentType: 'application/json',
+  dataType: 'jsonp',
+  responseType:'application/json',
+  xhrFields: {
+    withCredentials: false
+  },
+  headers: {
+    'Access-Control-Allow-Credentials' : true,
+    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Allow-Methods':'GET',
+    'Access-Control-Allow-Headers':'application/json',
+  },
+  success: function(data) {
+    bridge.ui.addResult(data);
+  },
+  error: function(error) {
+  }
+});

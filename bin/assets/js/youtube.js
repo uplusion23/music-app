@@ -18,13 +18,14 @@ function onYouTubeIframeAPIReady() {
       'showinfo' : 0
     },
     events: {
-    //  'onReady': bridge.mediaControls.playerReady()
+      'onReady': function() {
+      },
       'onStateChange': function(event) {
         //console.log(event);
         if (event.data == YT.PlayerState.PLAYING) {
+          bridge.mediaControls.playing = true;
           bridge.mediaControls.updateSeek();
           bridge.mediaControls.updateInfo();
-          bridge.mediaControls.playing = true;
         } else {
           clearInterval(bridge.mediaControls._updateSeek);
         }
@@ -32,3 +33,8 @@ function onYouTubeIframeAPIReady() {
     }
   });
 }
+
+bridge.playlist = [
+  'gJTQryWbzM8',
+  'J_yvaxEE5cQ'
+];
