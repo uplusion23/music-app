@@ -35,14 +35,12 @@ function onYouTubeIframeAPIReady() {
 }
 
 bridge.youtube = {};
-bridge.youtube.search = function(query, count, sort, callback) {
-  count = 25;
-  sort = 'fff';
-  // Add these later on
-
+bridge.youtube.search = function(query, count, sort, pageToken, callback) {
+  pageToken = (pageToken === undefined || pageToken === null || pageToken == '') ? "" : "&pageToken=" + pageToken;
+  console.log(pageToken);
   $.ajax({
     type: 'GET',
-    url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&key=" + key + "&maxResults=" + count,
+    url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&key=" + key + "&maxResults=" + count + "&order=" + sort + pageToken,
     contentType: 'application/json',
     dataType: 'jsonp',
     responseType:'application/json',

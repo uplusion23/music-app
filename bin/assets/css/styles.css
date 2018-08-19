@@ -1,11 +1,23 @@
 :root {
   --primary-dark: #222326;
-  --secondary-dark: #222326;
+  --secondary-dark: #1a1a1d;
   --grey: #373839;
   --darkest: #121213;
   --text: #FFF;
   --text-faded: #605F5F;
   --red: #F44336;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--darkest);
 }
 
 body, html {
@@ -186,11 +198,18 @@ body.sidemenuActive .container > .header {
 .container > .searchResults > .card > div[class^="result_"] {
   display: block;
   position: relative;
-  margin: 0 0 5px 0;
-  padding: 5px;
+  margin: 0;
+  padding: 15px;
   width: 100%;
   height: 95px;
   cursor: pointer;
+
+  border-bottom: 1px solid rgba(13,13,23,0.5);
+  transition: all 0.2s ease;
+}
+
+.container > .searchResults > .card > div[class^="result_"]:hover {
+  background: var(--secondary-dark)
 }
 
 .container > .searchResults > .card > div[class^="result_"] > .thumbnail {
@@ -199,16 +218,20 @@ body.sidemenuActive .container > .header {
   float: left;
   height: 95px;
   width: 95px;
+  margin: 0 10px 0 0;
   background-position: center;
   background-size: cover;
   background-image: url(../media/defaultAlbum.png);
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .container > .searchResults > .card > div[class^="result_"] > .info {
   display: block;
   position: relative;
   height: 95px;
-  width: calc(100% - 95px);
+  line-height: 95px;
+  width: calc(100% - 105px);
   box-sizing: border-box;
   float: left;
 }
@@ -216,8 +239,8 @@ body.sidemenuActive .container > .header {
 .container > .searchResults > .card > div[class^="result_"] > .info > span {
   display: block;
   width: 100%;
-  height: 25px;
-  line-height: 25px;
+  height: 95px;
+  line-height: 95px;
   color: var(--text);
   margin: 0 0 10px 0;
   padding: 0 10px;
@@ -322,7 +345,7 @@ body.sidemenuActive .container > .header {
   box-sizing: border-box;
   bottom: 0;
   left: 0;
-  background: var(--secondary-dark);
+  background: var(--primary-dark);
   z-index: 996;
 
   justify-content: space-between;

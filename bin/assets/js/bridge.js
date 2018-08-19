@@ -89,19 +89,27 @@ var bridge = {
       bridge.player.setVolume(val);
     }
   },
+  history: {
+    yt: {
+      searchTerm: null,
+      pageToken: null
+    }
+  },
   ui: {
     addResult: function(data) {
+      bridge.history.yt.pageToken = data.nextPageToken;
       for (var i = 0; i < data.items.length; i++) {
         var item = data.items[i];
-        $('.searchResults > .card').append('\
-        <div class="result_youtube">\
-          <div class="thumbnail" style="background-image: url(' + item.snippet.thumbnails.medium.url + ')"></div>\
-          <div class="info">\
-            <span>' + item.snippet.title + '</span>\
-            <span class="description">' + item.snippet.description + '</span>\
+        if (item.id.kind == "youtube#video") {
+          $('.searchResults > .card').append('\
+          <div class="result_youtube">\
+            <div class="thumbnail" style="background-image: url(' + item.snippet.thumbnails.medium.url + ')"></div>\
+            <div class="info">\
+              <span>' + item.snippet.title + '</span>\
+            </div>\
           </div>\
-        </div>\
-        ');
+          ');
+        }
       }
     }
   },

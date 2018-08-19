@@ -54,8 +54,17 @@ $('.volume').on('wheel', function(event) {
 
 $('body').on('keydown', '.search > input', function(e) {
   if (e.keyCode == 13) { // Enter pressed
-    bridge.youtube.search(encodeURI($(this).val()), 25, 'fff', function(data) {
+    bridge.history.yt.searchTerm = $(this).val();
+    bridge.youtube.search(encodeURI($(this).val()), 25, 'relevance', '', function(data) {
       bridge.ui.addResult(data);
     });
   }
 });
+
+$('.searchResults > .card').on('scroll', function() {
+  if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+    bridge.youtube.search(encodeURI(bridge.history.yt.searchTerm), 25, 'relevance', bridge.history.yt.pageToken, function(data) {
+      bridge.ui.addResult(data);
+    });
+  }
+})
